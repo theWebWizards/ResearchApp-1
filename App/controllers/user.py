@@ -1,11 +1,19 @@
 from App.models import User
 from App.database import db
 
-def create_user(username, password):
-    newuser = User(username=username, password=password)
-    db.session.add(newuser)
+
+
+def create_RegUser(username):
+    newReguser = RegUser(username=username)
+    db.session.add(newReguser)
     db.session.commit()
-    return newuser
+    return newReguser
+
+def create_Author(username,fullname,password,email):
+    newAuthor = User(username=username, fullname=fullname, password= password, email= email)
+    db.session.add(newAuthor)
+    db.session.commit()
+    return newAuthor
 
 def get_user_by_username(username):
     return User.query.filter_by(username=username).first()
@@ -29,5 +37,8 @@ def update_user(id, username):
         user.username = username
         db.session.add(user)
         return db.session.commit()
+    return None
+    
+def update_author(id, )
     return None
     
