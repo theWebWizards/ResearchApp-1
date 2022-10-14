@@ -56,7 +56,7 @@ app.cli.add_command(user_cli) # add the group to the cli
 #@click.Argument()
 @click.argument("title", default="title")
 @click.argument("PublicationContent", default="computers are cool")
-@click.argument("AuthorName", default="rob robing")
+@click.argument("AuthorName", default="rob")
 @click.argument("AuthorCredentials", default="student")
 @click.argument("CategoryInfo", default="technology")
 @click.argument("PublicationID", default= 1)

@@ -1,4 +1,5 @@
 from App.database import db
+from App.models import user
 
 
 class Publication(db.Model):
@@ -7,7 +8,7 @@ class Publication(db.Model):
     publicationId = db.Column(db.Integer, nullable = False)
     title= db.Column(db.String, nullable= False)
     content = db.Column(db.String, nullable = False)
-    name= db.Column(db.String, db.ForeignKey(user.fullname), nullable = False)
+    name= db.Column(db.String, db.ForeignKey(user.username),db.Reference(user.username), nullable = False)
     credentials = db.Column(db.String, db.ForeignKey(user.credentials), nullable = False)
     category = db.Column(db.String, nullable = False)
 
