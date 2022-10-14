@@ -26,6 +26,7 @@ User Commands
 # create a group, it would be the first argument of the comand
 # eg : flask user <command>
 user_cli = AppGroup('user', help='User object commands') 
+publication_cli = AppGroup('publication', help='Publication object commands')
 
 # Then define the command and any parameters and annotate it with the group (@)
 @user_cli.command("create", help="Creates a user")
@@ -49,6 +50,22 @@ def list_user_command(format):
         print(get_all_users_json())
 
 app.cli.add_command(user_cli) # add the group to the cli
+
+
+@publication_cli.command("create", help="create a publication")
+#@click.Argument()
+@click.argument("title", default="title")
+@click.argument("PublicationContent", default="computers are cool")
+@click.argument("AuthorName", default="rob robing")
+@click.argument("AuthorCredentials", default="student")
+@click.argument("CategoryInfo", default="technology")
+@click.argument("PublicationID", default= 1)
+def create_publication_command(title, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo, AuthorID):
+
+    CreatePublication(title, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo, AuthorID)
+    print(f'{Publication} created!')
+
+app.cli.add_command(publication_cli)
 
 
 '''

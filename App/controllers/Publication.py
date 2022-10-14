@@ -3,14 +3,14 @@ from App.models import user
 from App.database import db
 from App.auth import authenticate
 
-def CreatePublication (PublicationTitle, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo ):
-    newPublication = Publication(PublicationTitle = PublicationTitle , PublicationContent= PublicationContent, AuthorName = AuthorName, AuthorCredentials = AuthorCredentials, CategoryInfo= CategoryInfo)
+def CreatePublication (title, content, name, credentials, category ):
+    newPublication = Publication(title = title, content = content, name = name, credentials = credentials, category = category)
     db.session.add = (newPublication)
     db.session.commit()
     return newPublication
 
-def get_publication_by_title(PublicationTitle):
-    return Publication.query.filter_by(PublicationTitle= PublicationTitle).first()
+def get_publication_by_title(title):
+    return Publication.query.filter_by(title= title).first()
 
 def get_publication(id):
     return Publication.query.get(id)
@@ -25,10 +25,10 @@ def get_all_publication_json():
     Publication = [Publication.toJSON() for Publication in Publication]
     return Publication
 
-def update_publication(id, PublicationContent):
+def update_publication(id, content):
     Publication = get_publication(id)
-    Publication.PublicationContent = PublicationContent
-    db.session.add(PublicationContent)
+    Publication.content = content
+    db.session.add(content)
     db.session.commit()
     return None
 
