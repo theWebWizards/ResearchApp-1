@@ -2,27 +2,36 @@ from App.database import db
 from enum import enum
 
 class Publication(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    PublicationTitle= db.Column(db.String, nullable= False )
-    PublicationContent = db.Column(db.String, nullable = False)
-    AuthorInfo= db.Column(db.String, nullable= False )
-    CoAuthorInfo = db.Column(db.String, nullable = True)
-    CategoryInfo= db.Column(db.String, nullable= False )
 
-    def __init__(self, PublicationTitle, PublicationContent, AuthorInfo, CoAuthorInfo, CategoryInfo):
+    id = db.Column(db.Integer, primary_key=True)
+    PublicationId = db.Column(db.Integer, nullable = False)
+    PublicationTitle= db.Column(db.String, nullable= False)
+    PublicationContent = db.Column(db.String, nullable = False)
+    AuthorName= db.Column(db.String, db.ForeignKey(user.fullname), nullable = False)
+    AuthorCredentials = db.Column(db.String, db.ForeignKey(user.credentials), nullable = False)
+    CategoryInfo= db.Column(db.String, nullable = False)
+
+    def init(self, PublicationId, PublicationTitle, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo):
+
+        self.PublicationId = PublicationId
         self.PublicationTitle= PublicationTitle
         self.PublicationContent = PublicationContent
-        self.AuthorInfo= AuthorInfo
-        self.CoAuthorInfo = CoAuthorInfo
+        self.AuthorName = AuthorName
+        self.AuthorCredentials = AuthorCredentials
         self.CategoryInfo= CategoryInfo
 
 
     def toJSON(self):
+
         return{
+
             'id': self.id,
+            'Publication ID': self.PublicationId,
             'Title':self.PublicationTitle,
             'Content': self.PublicationContent,
             'Author':self.AuthorInfo,
-            'CoAuthor': self.CoAuthorInfo,
+            'Author Credentials': self.AuthorCredentials,
             'Category':self.CategoryInfo
+
         }
+        

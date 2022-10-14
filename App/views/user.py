@@ -3,13 +3,12 @@ from flask_jwt import jwt_required, current_identity
 
 
 from App.controllers import (
-    create_user, 
+    create_Author,
     get_all_users,
     get_all_users_json,
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
-
 
 @user_views.route('/users', methods=['GET'])
 def get_user_page():
@@ -21,12 +20,11 @@ def get_users_action():
     users = get_all_users_json()
     return jsonify(users)
 
-@user_views.route('/api/users', methods=['POST'])
+@user_views.route('/api/author', methods=['POST'])
 def create_user_action():
     data = request.json
-    create_user(data['username'], data['password'])
+    create_Author(data['username'], data['fullname'], data['password'], data['email'])
     return jsonify({'message': f"user {data['username']} created"})
-
 
 @user_views.route('/identify', methods=['GET'])
 @jwt_required()

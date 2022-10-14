@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}App Publications{% endblock %}
+{% block page %}App Publications{% endblock %}
+
+{{ super() }}
+
+{% block content %}
+    <div class="row">
+        <p>
+            This is table is renderd on the Server. Flask gets the data from the database and uses jinja templates to dyanmically render this page when a request is sent to <a href="/publications">/publications</a>.
+        </p>
+    </div>
+    <div class="row">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th><th>Content</th><th>Author</th><th>Author Name</th><th>Author Credentials</th><th>Type</th> 
+          </tr>
+        </thead>
+        <tbody>
+          {% for publication in publications %}
+            <tr>
+                <td>{{publication.title}}</td>
+                <td>{{publication.content}}</td>
+                <td>{{publication.author}}</td>
+                <td>{{publication.authorcreds}}</td>
+                <td>{{publication.type}}</td>
+            </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+{% endblock %}

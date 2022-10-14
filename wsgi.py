@@ -4,7 +4,7 @@ from flask.cli import with_appcontext, AppGroup
 
 from App.database import create_db, get_migrate
 from App.main import create_app
-from App.controllers import ( create_user, get_all_users_json, get_all_users )
+from App.controllers import ( create_Author, get_all_users_json, get_all_users )
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -31,8 +31,11 @@ user_cli = AppGroup('user', help='User object commands')
 @user_cli.command("create", help="Creates a user")
 @click.argument("username", default="rob")
 @click.argument("password", default="robpass")
-def create_user_command(username, password):
-    create_user(username, password)
+@click.argument("email", default="rob@email.com")
+@click.argument("fullname", default="rob robing")
+@click.argument("credentials", default="student")
+def create_user_command(username, password, fullname, email, credentials):
+    create_Author(username, password, fullname, email, credentials)
     print(f'{username} created!')
 
 # this command will be : flask user create bob bobpass
