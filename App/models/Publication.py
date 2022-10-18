@@ -8,8 +8,8 @@ class Publication(db.Model):
     publicationId = db.Column(db.Integer, nullable = False)
     title= db.Column(db.String, nullable= False)
     content = db.Column(db.String, nullable = False)
-    username= db.Column(db.String, db.ForeignKey(user.username),db.Reference(user.username), nullable = False)
-    credentials = db.Column(db.String, db.ForeignKey(user.credentials), nullable = False)
+    username= db.Column(db.String, db.ForeignKey('user.username'))
+    credentials = db.Column(db.String, db.ForeignKey('user.credentials'))
     category = db.Column(db.String, nullable = False)
 
     def __init__(self, title, content, name, credentials, category):

@@ -3,11 +3,13 @@ from App.database import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username =  db.Column(db.String, foreign_key=True )
+    username =  db.Column(db.String, nullable=False )
     email =  db.Column(db.String,nullable=False)
     fullname = db.Column(db.String,nullable=False)
     password = db.Column(db.String(120),nullable=False)
     credentials= db.Column(db.String,nullable=False )
+    publication = db.relationship('Publication', backref = 'publication', lazy=True, cascade="all, delete-orphan")
+
 
     def __init__(self, username, password, email, fullname, credentials):
         self.username = username
