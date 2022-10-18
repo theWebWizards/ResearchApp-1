@@ -12,7 +12,7 @@ class Publication(db.Model):
     credentials = db.Column(db.String, db.ForeignKey(user.credentials), nullable = False)
     category = db.Column(db.String, nullable = False)
 
-    def init(self, title, content, name, credentials, category):
+    def __init__(self, title, content, name, credentials, category):
 
         self.PublicationId = PublicationId
         self.title = title

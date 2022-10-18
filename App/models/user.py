@@ -9,7 +9,7 @@ class User(db.Model):
     password = db.Column(db.String(120),nullable=False)
     credentials= db.Column(db.String,nullable=False )
 
-    def init(self, username, password, email, fullname, credentials):
+    def __init__(self, username, password, email, fullname, credentials):
         self.username = username
         self.fullname = fullname
         self.set_password(password)
