@@ -1,10 +1,15 @@
 import click, pytest, sys
 from flask import Flask
-from flask.cli import with_appcontext, AppGroup
+from flask.cli import with_appcontext
+from flask.cli import AppGroup
 
-from App.database import create_db, get_migrate
+from App.database import create_db
+from App.database import get_migrate
 from App.main import create_app
-from App.controllers import ( create_Author, get_all_users_json, get_all_users )
+from App.controllers import create_Author
+from App.controllers import CreatePublication
+from App.controllers import get_all_users
+from App.controllers import get_all_users_json
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
@@ -55,15 +60,15 @@ app.cli.add_command(user_cli) # add the group to the cli
 @publication_cli.command("create", help="create a publication")
 #@click.Argument()
 @click.argument("title", default="title")
-@click.argument("PublicationContent", default="computers are cool")
-@click.argument("AuthorName", default="rob")
-@click.argument("AuthorCredentials", default="student")
-@click.argument("CategoryInfo", default="technology")
-@click.argument("PublicationID", default= 1)
-def create_publication_command(title, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo, AuthorID):
+@click.argument("content", default="computers are cool")
+@click.argument("username", default="rob")
+#@click.argument("AuthorCredentials", default="student")
+@click.argument("category", default="technology")
+#@click.argument("publicationId", default= 1)
+def create_publication_command(title, content, username, category):
 
-    CreatePublication(title, PublicationContent, AuthorName, AuthorCredentials, CategoryInfo, AuthorID)
-    print(f'{Publication} created!')
+    CreatePublication(title, content, username, category)
+    print(f'Publication {title} created!')
 
 app.cli.add_command(publication_cli)
 

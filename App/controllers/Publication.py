@@ -1,10 +1,10 @@
 from App.models import Publication
 from App.models import user
 from App.database import db
-from App.auth import authenticate
+#from App.auth import authenticate
 
-def CreatePublication (title, content, name, credentials, category ):
-    newPublication = Publication(title = title, content = content, name = name, credentials = credentials, category = category)
+def CreatePublication (title, content, name, category ):
+    newPublication = Publication(title = title, content = content, name = name, category = category)
     db.session.add = (newPublication)
     db.session.commit()
     return newPublication
