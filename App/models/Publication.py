@@ -8,16 +8,16 @@ class Publication(db.Model):
     publicationId = db.Column(db.Integer, nullable = False)
     title= db.Column(db.String, nullable= False)
     content = db.Column(db.String, nullable = False)
-    name= db.Column(db.String, db.ForeignKey(user.username),db.Reference(user.username), nullable = False)
-    credentials = db.Column(db.String, db.ForeignKey(user.credentials), nullable = False)
+    username= db.Column(db.String, db.ForeignKey('user.username'))
+    credentials = db.Column(db.String, db.ForeignKey('user.credentials'))
     category = db.Column(db.String, nullable = False)
 
-    def init(self, title, content, name, credentials, category):
+    def __init__(self, title, content, name, credentials, category):
 
         self.PublicationId = PublicationId
         self.title = title
         self.content = content
-        self.name = name
+        self.username = username
         self.credentials = credentials
         self.category= category
 
@@ -30,7 +30,7 @@ class Publication(db.Model):
             'Publication ID': self.PublicationId,
             'title':self.title,
             'content': self.content,
-            'author':self.name,
+            'author':self.username,
             'author credentials': self.credentials,
             'category':self.category
 
