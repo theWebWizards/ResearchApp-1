@@ -12,8 +12,8 @@ def CreatePublication (publicationid, title, content, userid, category ):
 def get_publication_by_title(title):
     return Publication.query.filter_by(title= title).first()
 
-def get_publication_by_publicationid(publicationid):
-    return Publication.query.get(publicationid)
+def get_publication(id):
+    return Publication.query.get(id)
 
 def get_all_publications():
     return Publication.query.all()
@@ -25,11 +25,12 @@ def get_all_publication_json():
     Publication = [Publication.toJSON() for Publication in Publication]
     return Publication
 
-def update_publication(publicationid, content):
-    Publication = get_publication_by_publicationid(publicationid)
-    Publication.content = content
-    db.session.add(content)
-    db.session.commit()
+def update_publication(title, content):
+    Publication = get_publication_by_title(title)
+    if Publication:
+        Publication.content = content
+        db.session.add(content)
+        db.session.commit()
     return None
 
 def delete_publication(publicationid):
