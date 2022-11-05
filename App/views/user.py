@@ -20,7 +20,7 @@ def get_users_action():
     users = get_all_users_json()
     return jsonify(users)
 
-@user_views.route('/api/author', methods=['POST'])
+@user_views.route('/signup', methods=['POST'])
 def create_user_action():
     data = request.json
     create_Author(data['userid'], data['username'], data['fullname'], data['password'], data['email'], data['credentials'])

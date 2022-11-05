@@ -23,7 +23,7 @@ def get_publication_action():
     publications = get_all_publication_json()
     return jsonify(publications)
 
-@publication_views.route('/api/createpublication', methods=['POST'])
+@publication_views.route('/createpublication', methods=['POST'])
 def create_publication_action():
     data = request.json
     CreatePublication(data['publicationid'], data['title'], data['content'], data['userid'], data['category'])
@@ -36,13 +36,13 @@ def create_publication_action():
 #def identify_user_action():
     #return jsonify({'message': f"username: {current_identity.username}, id : {current_identity.id}"})
 
-@publication_views.route('/api/updatepublication', methods=['PUT'])
+@publication_views.route('/updatepublication', methods=['PUT'])
 def update_publication_action():
     data = request.json
     update_publication(data['title'], data['content'])
     return jsonify({'message': f"publication {data['title']} updated"})
 
-@publication_views.route('/api/deletepublication', methods=['DELETE'])
+@publication_views.route('/deletepublication', methods=['DELETE'])
 def update_publication_action():
     data = request.json
     delete_publication(data['title'])
