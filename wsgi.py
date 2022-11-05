@@ -74,19 +74,21 @@ def create_publication_command(publicationid, title, content, userid, category):
     print(f'Publication {publicationid} entitled {title} created!')
 
 @publication_cli.command("update", help="update a publication")
-@click.argument("publicationid", default="01")
+@click.argument("title", default="Computers")
 @click.argument("content", default="computers are awesome")
-def update_publication_command(publicationid, content):
+def update_publication_command(title, content):
 
-    update_publication(publicationid, content)
-    print(f'Publication {publicationid} update!')
+    update_publication(title, content)
+    print(f'Publication {title} updated!')
 
 @publication_cli.command("delete", help="delete a publication")
-@click.argument("publicationid", default="01")
-def delete_publication_command(publicationid):
+@click.argument("title", default="Computers")
 
-    delete_publication(publicationid)
-    print(f'Publication {publicationid} deleted!')
+
+def delete_publication_command(title):
+
+    delete_publication(title)
+    print(f'Publication {title} deleted!')
 
 app.cli.add_command(publication_cli)
 

@@ -33,8 +33,8 @@ def update_publication(title, content):
         db.session.commit()
     return None
 
-def delete_publication(publicationid):
-    Publication = get_publication_by_publicationid(publicationid)
+def delete_publication(title):
+    Publication = get_publication_by_title(title)
     if Publication:
         db.session.delete(Publication)
         db.session.commit()

@@ -23,7 +23,7 @@ def get_users_action():
 @user_views.route('/api/author', methods=['POST'])
 def create_user_action():
     data = request.json
-    create_Author(data['username'], data['fullname'], data['password'], data['email'])
+    create_Author(data['userid'], data['username'], data['fullname'], data['password'], data['email'], data['credentials'])
     return jsonify({'message': f"user {data['username']} created"})
 
 @user_views.route('/identify', methods=['GET'])

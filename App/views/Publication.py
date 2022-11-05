@@ -23,11 +23,12 @@ def get_publication_action():
     publications = get_all_publication_json()
     return jsonify(publications)
 
-@publication_views.route('/api/users', methods=['POST'])
+@publication_views.route('/api/createpublication', methods=['POST'])
 def create_publication_action():
     data = request.json
-    create_publication(data['title'], data['content'], data['author'], data['authorcreds'], data['type'])
+    CreatePublication(data['publicationid'], data['title'], data['content'], data['userid'], data['category'])
     return jsonify({'message': f"publication {data['title']} created"})
+
 
 
 #@publication_views.route('/identify', methods=['GET'])
@@ -38,11 +39,11 @@ def create_publication_action():
 @publication_views.route('/api/updatepublication', methods=['PUT'])
 def update_publication_action():
     data = request.json
-    update_publication(data['id'], data['content'])
-    return jsonify({'message': f"publication {data['id']} updated"})
+    update_publication(data['title'], data['content'])
+    return jsonify({'message': f"publication {data['title']} updated"})
 
 @publication_views.route('/api/deletepublication', methods=['DELETE'])
 def update_publication_action():
     data = request.json
-    delete_publication(data['id'])
-    return jsonify({'message': f"publication {data['id']} deleted"})
+    delete_publication(data['title'])
+    return jsonify({'message': f"publication {data['title']} deleted"})
