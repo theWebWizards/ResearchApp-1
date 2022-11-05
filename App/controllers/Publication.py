@@ -3,8 +3,8 @@ from App.models import user
 from App.database import db
 #from App.auth import authenticate
 
-def CreatePublication (title, content, name, category ):
-    newPublication = Publication(title = title, content = content, name = name, category = category)
+def CreatePublication (publicationid, title, content, userid, category ):
+    newPublication = Publication(publicationid=publicationid, title = title, content = content, userid = userid, category = category)
     db.session.add = (newPublication)
     db.session.commit()
     return newPublication
@@ -25,15 +25,16 @@ def get_all_publication_json():
     Publication = [Publication.toJSON() for Publication in Publication]
     return Publication
 
-def update_publication(id, content):
-    Publication = get_publication(id)
-    Publication.content = content
-    db.session.add(content)
-    db.session.commit()
+def update_publication(title, content):
+    Publication = get_publication_by_title(title)
+    if Publication:
+        Publication.content = content
+        db.session.add(content)
+        db.session.commit()
     return None
 
-def delete_publication(id):
-    Publication = get_publication(id)
+def delete_publication(title):
+    Publication = get_publication_by_title(title)
     if Publication:
         db.session.delete(Publication)
         db.session.commit()

@@ -3,6 +3,7 @@ from App.database import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, nullable=False)
     username =  db.Column(db.String, nullable=False )
     email =  db.Column(db.String,nullable=False)
     fullname = db.Column(db.String,nullable=False)
@@ -11,7 +12,8 @@ class User(db.Model):
     publication = db.relationship('Publication', backref = 'publication', lazy=True, cascade="all, delete-orphan")
 
 
-    def __init__(self, username, password, email, fullname, credentials):
+    def _init_(self, userid, username, password, email, fullname, credentials):
+        self.userid = userid
         self.username = username
         self.fullname = fullname
         self.set_password(password)
