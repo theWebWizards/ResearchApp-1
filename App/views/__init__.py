@@ -1,3 +1,3 @@
 from .user import *
 from .index import *
-from .Publication import *
+from .publications import *
