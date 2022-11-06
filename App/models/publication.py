@@ -1,5 +1,5 @@
 from App.database import db
-from App.models import user
+from App.models import User
 
 
 class Publication(db.Model):
@@ -28,7 +28,7 @@ class Publication(db.Model):
         return{
 
             'id': self.id,
-            'publicationid': self.PublicationId,
+            'publicationid': self.publicationid,
             'title':self.title,
             'content': self.content,
             'username':self.username,

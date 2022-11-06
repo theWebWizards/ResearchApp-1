@@ -1,5 +1,5 @@
 from App.models import Publication
-from App.models import user
+from App.models import User
 from App.database import db
 #from App.auth import authenticate
 

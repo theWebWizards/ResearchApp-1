@@ -40,7 +40,7 @@ def update_publication_action():
     return jsonify({'message': f"publication {data['title']} updated"})
 
 @publication_views.route('/deletepublication', methods=['DELETE'])
-def update_publication_action():
+def delete_publication_action():
     data = request.json
     delete_publication(data['title'])
     return jsonify({'message': f"publication {data['title']} deleted"})

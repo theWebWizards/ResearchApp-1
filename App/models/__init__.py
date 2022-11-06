@@ -1,3 +1,3 @@
 from .user import *
-from .publications import *
+from .publication import *
 #from .auth import *
