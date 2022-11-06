@@ -28,7 +28,7 @@ class Publication(db.Model):
         return{
 
             'id': self.id,
-            'Publication ID': self.PublicationId,
+            'publicationid': self.PublicationId,
             'title':self.title,
             'content': self.content,
             'username':self.username,

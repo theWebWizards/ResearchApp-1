@@ -12,7 +12,6 @@ from App.controllers import (
 
 publication_views = Blueprint('publication_views', __name__, template_folder='../templates')
 
-
 @publication_views.route('/publications', methods=['GET'])
 def get_publication_page():
     publications = get_all_publications()
@@ -28,8 +27,6 @@ def create_publication_action():
     data = request.json
     CreatePublication(data['publicationid'], data['title'], data['content'], data['userid'], data['category'])
     return jsonify({'message': f"publication {data['title']} created"})
-
-
 
 #@publication_views.route('/identify', methods=['GET'])
 #@jwt_required()
